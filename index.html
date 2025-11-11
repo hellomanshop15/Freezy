@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freezy Services - Design, Videography, and Editing Services</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: #e0f7ff; /* Light blue background */
+            color: #003366; /* Dark blue text for contrast */
+            overflow-x: hidden; 
+            position: relative; 
+        }
+        /* Animated Photoshop-like icons in background */
+        .icon-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .icon {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(0, 51, 102, 0.3); /* Dark blue icons */
+            animation: float 10s ease-in-out infinite;
+        }
+        .icon:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .icon:nth-child(2) { top: 20%; left: 80%; animation-delay: 2s; }
+        .icon:nth-child(3) { top: 50%; left: 20%; animation-delay: 4s; }
+        .icon:nth-child(4) { top: 70%; left: 70%; animation-delay: 6s; }
+        .icon:nth-child(5) { top: 30%; left: 50%; animation-delay: 8s; }
+        .icon:nth-child(6) { top: 80%; left: 30%; animation-delay: 1s; }
+        .icon:nth-child(7) { top: 40%; left: 90%; animation-delay: 3s; }
+        .icon:nth-child(8) { top: 60%; left: 5%; animation-delay: 5s; }
+        .icon:nth-child(9) { top: 15%; left: 60%; animation-delay: 7s; }
+        .icon:nth-child(10) { top: 85%; left: 40%; animation-delay: 9s; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+            25% { transform: translateY(-20px) rotate(90deg); opacity: 0.5; }
+            50% { transform: translateY(0px) rotate(180deg); opacity: 0.3; }
+            75% { transform: translateY(20px) rotate(270deg); opacity: 0.5; }
+        }
+        header { 
+            background-color: rgba(173, 216, 230, 0.8); /* Light blue header */
+            color: #003366; 
+            padding: 20px; 
+            text-align: center; 
+            border-bottom: 2px solid #003366; 
+            position: relative; 
+            z-index: 1; 
+        }
+        .logo { max-width: 150px; height: auto; }
+        .intro {
+            padding: 60px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #e0f7ff, #b3e0ff);
+            color: #003366;
+            position: relative;
+            z-index: 1;
+        }
+        .intro h1 { font-size: 3rem; margin-bottom: 20px; }
+        .intro p { font-size: 1.2rem; margin-bottom: 30px; }
+        .intro button {
+            background-color: #003366;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .intro button:hover { background-color: #005599; }
+        section { 
+            padding: 40px; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white for sections */
+            border-radius: 10px; 
+            margin-bottom: 20px; 
+            animation: fadeInUp 1s ease-out; 
+            position: relative; 
+            z-index: 1; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h2 { color: #003366; }
+        .services { display: flex; justify-content: space-around; flex-wrap: wrap; }
+        .service { 
+            background: rgba(173, 216, 230, 0.5); /* Light blue service boxes */
+            padding: 20px; 
+            margin: 10px; 
+            border-radius: 8px; 
+            box-shadow: 0 0 10px rgba(0,51,102,0.3); 
+            width: 30%; 
+            min-width: 250px; 
+            border: 1px solid #003366; 
+            animation: boxGlow 2s ease-in-out infinite alternate; 
+        }
+        @keyframes boxGlow {
+            from { box-shadow: 0 0 10px rgba(0,51,102,0.3); }
+            to { box-shadow: 0 0 20px rgba(0,51,102,0.6); }
+        }
+        .pricing { 
+            background: rgba(173, 216, 230, 0.5); 
+            padding: 20px; 
+            border-radius: 8px; 
+            box-shadow: 0 0 10px rgba(0,51,102,0.3); 
+            border: 1px solid #003366; 
+            animation: boxGlow 2s ease-in-out infinite alternate; 
+            overflow-x: auto; /* For mobile table scrolling */
+        }
+        .pricing table { width: 100%; border-collapse: collapse; min-width: 600px; } /* Ensure table doesn't shrink too much */
+        .pricing th, .pricing td { border: 1px solid #003366; padding: 10px; text-align: left; color: #003366; }
+        .pricing th { background-color: rgba(173, 216, 230, 0.7); }
+        .contact { 
+            background: rgba(173, 216, 230, 0.5); 
+            padding: 20px; 
+            border-radius: 8px; 
+            box-shadow: 0 0 10px rgba(0,51,102,0.3); 
+            border: 1px solid #003366; 
+            animation: boxGlow 2s ease-in-out infinite alternate; 
+        }
+        form { display: flex; flex-direction: column; }
+        input, textarea { 
+            margin: 10px 0; 
+            padding: 10px; 
+            border: 1px solid #003366; 
+            border-radius: 4px; 
+            background-color: rgba(255, 255, 255, 0.8); 
+            color: #003366; 
+        }
+        button { 
+            background-color: #003366; 
+            color: white; 
+            padding: 10px; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            transition: background-color 0.3s; 
+        }
+        button:hover { background-color: #005599; }
+        footer { 
+            text-align: center; 
+            padding: 20px; 
+            background-color: rgba(173, 216, 230, 0.9); 
+            color: #003366; 
+            border-top: 2px solid #003366; 
+            position: relative; 
+            z-index: 1; 
+        }
+
+        /* Tablet Styles (768px and below) */
+        @media (max-width: 768px) {
+            .intro h1 { font-size: 2.5rem; }
+            .intro p { font-size: 1rem; }
+            .intro button { padding: 12px 25px; font-size: 0.9rem; }
+            section { padding: 30px 20px; }
+            .services { flex-direction: column; align-items: center; }
+            .service { width: 80%; min-width: unset; }
+            .pricing table { font-size: 0.9rem; }
+        }
+
+        /* Mobile Styles (480px and below) */
+        @media (max-width: 480px) {
+            header { padding: 15px; }
+            .logo { max-width: 120px; }
+            .intro { padding: 40px 15px; }
+            .intro h1 { font-size: 2rem; }
+            .intro p { font-size: 0.9rem; }
+            .intro button { width: 100%; padding: 15px; font-size: 1rem; }
+            section { padding: 20px 15px; margin-bottom: 15px; }
+            h2 { font-size: 1.5rem; }
+            .service { width: 100%; padding: 15px; margin: 10px 0; }
+            .pricing { padding: 15px; }
+            .pricing table { font-size: 0.8rem; }
+            .contact { padding: 15px; }
+            input, textarea { padding: 12px; }
+            button { padding: 12px; font-size: 1rem; }
+            footer { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="icon-bg">
+        <div class="icon">🖌️</div> <!-- Brush -->
+        <div class="icon">✏️</div> <!-- Pencil -->
+        <div class="icon">🎨</div> <!-- Palette -->
+        <div class="icon">📐</div> <!-- Ruler -->
+        <div class="icon">🔍</div> <!-- Magnifying Glass -->
+        <div class="icon">🖼️</div> <!-- Frame -->
+        <div class="icon">🎥</div> <!-- Camera -->
+        <div class="icon">✂️</div> <!-- Scissors -->
+        <div class="icon">💻</div> <!-- Computer -->
+        <div class="icon">🎬</div> <!-- Clapperboard -->
+    </div>
+    <header>
+        <img src="logo.png" alt="Freezy Services Logo" class="logo">
+        <h1>Freezy Services</h1>
+        <p>Your go-to for Design, Videography, and Editing</p>
+    </header>
+
+    <section class="intro">
+        <h1>Welcome to Freezy Services</h1>
+        <p>Transforming ideas into stunning visuals with expert design, videography, and editing. Let's create something amazing together!</p>
+        <button onclick="scrollToServices()">Explore Our Services</button>
+    </section>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="services">
+            <div class="service">
+                <h3>Design</h3>
+                <p>Creative graphic design for logos, branding, websites, and more. We bring your vision to life with stunning visuals.</p>
+            </div>
+            <div class="service">
+                <h3>Videography</h3>
+                <p>Professional video production including filming, scripting, and post-production for commercials, events, and social media.</p>
+            </div>
+            <div class="service">
+                <h3>Editing</h3>
+                <p>Expert photo and video editing services to enhance your content, from color correction to special effects.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing">
+        <h2>Pricing</h2>
+        <div class="pricing">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Basic Package</th>
+                        <th>Standard Package</th>
+                        <th>Premium Package</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Design</td>
+                        <td>80 MAD (Logo Design)</td>
+                        <td>250 MAD (Branding Kit)</td>
+                        <td>500 MAD (Full Website Design)</td>
+                    </tr>
+                    <tr>
+                        <td>Videography</td>
+                        <td>150 MAD (Short Clip)</td>
+                        <td>400 MAD (Event Coverage)</td>
+                        <td>800 MAD (Full Production)</td>
+                    </tr>
+                    <tr>
+                        <td>Editing</td>
+                        <td>40 MAD (Photo Edit)</td>
+                        <td>120 MAD (Video Edit)</td>
+                        <td>320 MAD (Advanced Effects)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>* Prices are starting points and can be customized. Contact us for quotes.</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact">
+            <p>Get in touch for inquiries, quotes, or collaborations.</p>
+            <form action="https://formspree.io/f/mjkjvvlw" method="POST">  <!-- Replace with your Formspree endpoint -->
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+            <p>Email: hdesigner.ua@gmail.com | Phone: (+212) 695-2580-19 | Address: Morocco, Casablanca</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Freezy Services. All rights reserved.</p>
+    </footer>
+
+    <script src="animations.js"></script>
+</body>
+</html>
